@@ -1,4 +1,5 @@
-require "rulers/version"
+require 'rulers/version'
+require 'rulers/array'
 
 module Rulers
   class Application
@@ -7,6 +8,6 @@ module Rulers
         ['Hello from Ruby on Rulers!']]
     end
   end
-  
+
   class Error < StandardError; end
 end
