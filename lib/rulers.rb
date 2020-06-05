@@ -1,6 +1,6 @@
-require 'rulers/array'
-require 'rulers/object'
+require 'rulers/dependencies'
 require 'rulers/routing'
+require 'rulers/util'
 require 'rulers/version'
 
 module Rulers
