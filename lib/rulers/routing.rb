@@ -3,8 +3,8 @@ module Rulers
     def get_controller_and_action(env)
       _, cont, action, after = env["PATH_INFO"].split('/', 4)
       raise FileNotFoundError if cont == 'Favicon.ico'
-      cont = 'home' if cont.blank?
-      action = 'index' if action.blank?
+      cont = DEFAULT_CONTROLLER if cont.blank?
+      action = DEFAULT_ACTION if action.blank?
       cont = cont.capitalize + "Controller"
       [Object.const_get(cont), action]
     rescue NameError

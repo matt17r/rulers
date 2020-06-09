@@ -1,3 +1,5 @@
+require 'rulers/errors'
+
 class Object
   def self.const_missing(c)
     require Rulers.to_underscore(c.to_s)
