@@ -1,4 +1,7 @@
+require 'rulers/constants'
+require 'rulers/controller'
 require 'rulers/dependencies'
+require 'rulers/errors'
 require 'rulers/routing'
 require 'rulers/util'
 require 'rulers/version'
@@ -10,6 +13,8 @@ module Rulers
       controller = klass.new(env)
       text = controller.send(act)
       [200, {'Content-Type' => 'text/html'}, [text]]
+    rescue LoadError => e
+      server_error(subject: 'Controller not found')
     rescue ControllerNotFoundError => e
       server_error(subject: e.message)
     rescue FileNotFoundError
@@ -37,17 +42,4 @@ module Rulers
         ]]
     end
   end
-
-  class Controller
-    def initialize(env)
-      @env = env
-    end
-
-    def env
-      @env
-    end
-  end
-
-  class ControllerNotFoundError < StandardError; end
-  class FileNotFoundError < StandardError; end
 end
